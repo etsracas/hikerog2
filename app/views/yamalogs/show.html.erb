@@ -1,0 +1,43 @@
+<div class="container hikerog">
+
+  <% provide :title, @yamalog.yama_name %>
+
+  <h2><%= @yamalog.yama_name %></h2>
+
+  <table class="yamalog_table">
+    <tbody>
+      <tr>
+        <th>日付</th>
+        <td><%= @yamalog.yama_date %></td>
+      </tr>
+      <tr>
+        <th>天気</th>
+        <td><%= @yamalog.weather %></td>
+      </tr>
+      <tr>
+        <th>メンバー</th>
+        <td><%= @yamalog.member %></td>
+      </tr>
+      <tr>
+        <th>ルート</th>
+        <td><%= @yamalog.route %></td>
+      </tr>
+        <tr>
+          <th>写真</th>
+          <td><%= image_tag @yamalog.yamalog_pic.thumb.url %></td>
+        </tr>
+    </tbody>
+  </table>
+
+  <% if @yamalog.created_by?(current_user) %>
+    <div class="row yamalog-btn">
+      <div class="col-lg-6">
+        <%= link_to '編集', edit_yamalog_path(@yamalog), class: 'btn btn-success btn-lg btn-block' %>
+      </div>
+      <div class="col-lg-6">
+        <%= link_to '削除', yamalog_path(@yamalog), class: 'btn btn-danger btn-lg btn-block', method: :delete, data: { confirm: '本当に削除しますか？' } %>
+      </div>
+    </div>
+  <% end %>
+
+</div>

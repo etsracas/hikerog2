@@ -1,0 +1,2 @@
+module YamalogsHelper
+end

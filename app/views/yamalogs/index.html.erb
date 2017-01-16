@@ -1,0 +1,26 @@
+<div class="container hikerog">
+
+  <h1>みんなのヤマログ一覧</h1>
+  <p>みんなのヤマログを確認しよう。</p>
+
+  <%= form_tag yamalogs_path, :method => 'get' do %> <%#　projects_pathはモデル名で読みかえること %>
+      <p>
+        <%= text_field_tag :search, params[:search] %>
+        <%= submit_tag "検索する", :yama_name => nil %>
+      </p>
+  <% end %>
+
+  <div class="list-group">
+    <% @yamalogs.each do |yamalog| %>
+        <div class="uk-width-medium-1-2 uk-width-large-1-3 top-hikerog">
+          <div class="uk-panel uk-panel-box uk-panel-box-secondary">
+            <%= link_to(yamalog) do %>
+                <h3 class="uk-panel-title"><%= yamalog.yama_name %></h3>
+            <% end %>
+            <%= yamalog.yama_date %>
+          </div>
+        </div>
+    <% end %>
+  </div>
+
+</div>

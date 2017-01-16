@@ -1,0 +1,70 @@
+<% provide :title, "ヤマログ投稿" %>
+
+<div class="container">
+
+  <div class="columns is-mobile">
+    <div class="column is-half is-offset-one-quarter">
+
+      <div class="content">
+        <h2 class="title">ヤマログを作成</h2>
+        <p>登った山の情報を登録して、みんなに共有しよう。</p>
+      </div>
+
+      <%= form_for @yamalog, html: {multipart: true, wrapper: :horizontal_form} do |f| %>
+
+        <%= f.label :yama_date, '登山日時', class: 'label' %>
+        <div class="control input-group date datepicker">
+          <%= f.text_field :yama_date, class: 'input' %>
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+          </span>
+        </div>
+
+        <%= f.label :yama_name, '山名', class: 'label' %>
+        <div class="control">
+          <%= f.text_field :yama_name, class: 'input' %>
+        </div>
+
+        <%= f.label :weather, '天気', class: 'label' %>
+        <div class="control">
+          <%= f.text_field :weather, class: 'input' %>
+        </div>
+
+        <%= f.label :member, 'メンバー', class: 'label' %>
+        <div class="control">
+          <%= f.text_field :member, class: 'input' %>
+        </div>
+
+        <%= f.label :route, 'ルート', class: 'label' %>
+        <div class="control">
+          <%= f.text_area :route, class: 'input' %>
+        </div>
+
+        <label for="yamalog_pic" class="label">写真</label>
+        <div class="control fileupload">
+          <%= f.file_field :yamalog_pic, class: 'inputfile inputfile-6' %>
+          <%= f.label :yamalog_pic do %>
+            <span></span>
+            <strong>ファイルを選択</strong>
+          <% end %>
+        </div>
+
+        <label for="gpslog" class="label">GPSログ</label>
+        <div class="control fieupload">
+          <%= f.file_field :gpslog, class: 'inputfile inputfile-6' %>
+          <%= f.label :gpslog do %>
+            <span></span>
+            <strong>ファイルを選択</strong>
+          <% end %>
+        </div>
+
+        <div class="control">
+          <%= f.button "投稿", class: 'button is-primary is-outlined' %>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>
+
+<%= javascript_include_tag 'main' %>

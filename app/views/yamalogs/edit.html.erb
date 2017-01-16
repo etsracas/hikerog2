@@ -1,0 +1,57 @@
+<% provide :title, "ヤマログ編集" %>
+
+<h2>ヤマログを編集</h2>
+
+<%= form_for @yamalog, html: {class: 'form-horizontal'} do |f| %>
+
+    <div class="form-group">
+      <%= f.label :yama_date, '登山日時', class: 'control-label col-xs-2' %>
+      <div class="col-xs-7">
+        <%= f.date_select :yama_date, {}, class: 'form-control bootstrap-date' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :yama_name, '山名', class: 'control-label col-xs-2' %>
+      <div class="col-xs-7">
+        <%= f.text_field :yama_name, class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :weather, '天気', class: 'control-label col-xs-2' %>
+      <div class="col-xs-7">
+        <%= f.text_field :weather, class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :member, 'メンバー', class: 'control-label col-xs-2' %>
+      <div class="col-xs-7">
+        <%= f.text_field :member, class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :route, 'ルート', class: 'control-label col-xs-2' %>
+      <div class="col-xs-7">
+        <%= f.text_area :route, class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :gpslog, 'GPSログ', class: 'control-label col-xs-2' %>
+      <div class="col-xs-7">
+        <%= f.text_field :gpslog, class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-xs-offset-2 col-xs-1">
+        <%= f.submit "更新", class: 'btn btn-default' %>
+      </div>
+      <div class="col-xs-1">
+        <%= link_to 'キャンセル', yamalog_path, class: 'btn btn-danger' %>
+      </div>
+    </div>
+<% end %>

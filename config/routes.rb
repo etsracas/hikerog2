@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+
+  resources :yamalogs
+  devise_for :users
+  root to: "staticpage#index"
+
+  get '/help', to: 'staticpage#help'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
