@@ -1,40 +1,32 @@
 <header>
-  <nav class="nav has-shadow">
-    <div class="container">
-      <div class="nav-left">
-        <%= link_to 'hikerog', root_path, class: 'nav-item is-brand' %>
-      </div>
 
-      <div class="nav-right nav-menu">
+  <!-- ドロップダウンメニュー -->
+  <ul id="dropdown1" class="dropdown-content">
+    <% if user_signed_in? %>
+        <li><%= link_to 'プロフィール編集', edit_user_registration_path %></li>
+        <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+    <% else %>
+        <li><%= link_to 'ログイン', new_user_session_path %></li>
+    <% end %>
+    <li><%= link_to 'お問い合わせ', help_path %></li>
+    <li class="divider"></li>
+    <li><%= link_to 'トップ', root_path %></li>
+  </ul>
 
-        <ul class="nav-item menu-list">
-          <li><%= link_to 'ヤマログを探す', yamalogs_path %></li>
+  <nav>
+    <div class="container nav-wrapper">
+        <%= link_to 'hikerog', root_path, class: 'brand-logo' %>
+
+        <ul class="right hide-on-med-and-down">
+          <li><%= link_to 'やまログを探す', yamalogs_path %></li>
           <% if user_signed_in? %>
-            <li><%= link_to 'ヤマログを投稿', new_yamalog_path %></li>
+            <li><%= link_to 'やまログを投稿', new_yamalog_path %></li>
           <% else %>
             <li><%= link_to '新規登録', new_user_registration_path %></li>
           <% end %>
 
-          <li class="uk-parent" data-uk-dropdown aria-haspopup="true" aria-expanded="false">
-            <a href=>Menu</a>
-            <div class="uk-dropdown uk-dropdown-navbar uk-dropdown-bottom">
-              <ul class="uk-nav uk-nav-navbar">
-                <% if user_signed_in? %>
-                  <li><%= link_to 'プロフィール編集', edit_user_registration_path %></li>
-                  <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
-                <% else %>
-                  <li><%= link_to 'ログイン', new_user_session_path %></li>
-                <% end %>
-                <li><%= link_to 'お問い合わせ', help_path %></li>
-                <li class="uk-nav-divider"></li>
-                <li><%= link_to 'トップ', root_path %></li>
-              </ul>
-            </div>
-          </li>
-
+          <li><a class="dropdown-button" data-constrainwidth="false" href="#!" data-activates="dropdown1">Menu<i class="material-icons right">arrow_drop_down</i></a></li>
         </ul>
-
-      </div>
 
     </div>
   </nav>

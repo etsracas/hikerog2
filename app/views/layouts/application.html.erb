@@ -6,11 +6,16 @@
   <body>
     <%= render 'header' %>
 
-    <div class="container">
-      <%= yield %>
-    </div>
+    <main>
+      <div class="container">
+        <%= yield %>
+      </div>
+    </main>
 
     <%= render 'footer' %>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <%= javascript_include_tag 'application' %>
 
   </body>
 </html>

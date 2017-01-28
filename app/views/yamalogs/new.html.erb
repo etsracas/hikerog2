@@ -1,70 +1,89 @@
-<% provide :title, "ヤマログ投稿" %>
+<% provide :title, "やまログ投稿" %>
 
-<div class="container">
-
-  <div class="columns is-mobile">
-    <div class="column is-half is-offset-one-quarter">
-
-      <div class="content">
-        <h2 class="title">ヤマログを作成</h2>
-        <p>登った山の情報を登録して、みんなに共有しよう。</p>
-      </div>
-
-      <%= form_for @yamalog, html: {multipart: true, wrapper: :horizontal_form} do |f| %>
-
-        <%= f.label :yama_date, '登山日時', class: 'label' %>
-        <div class="control input-group date datepicker">
-          <%= f.text_field :yama_date, class: 'input' %>
-          <span class="input-group-addon">
-            <span class="glyphicon glyphicon-calendar"></span>
-          </span>
-        </div>
-
-        <%= f.label :yama_name, '山名', class: 'label' %>
-        <div class="control">
-          <%= f.text_field :yama_name, class: 'input' %>
-        </div>
-
-        <%= f.label :weather, '天気', class: 'label' %>
-        <div class="control">
-          <%= f.text_field :weather, class: 'input' %>
-        </div>
-
-        <%= f.label :member, 'メンバー', class: 'label' %>
-        <div class="control">
-          <%= f.text_field :member, class: 'input' %>
-        </div>
-
-        <%= f.label :route, 'ルート', class: 'label' %>
-        <div class="control">
-          <%= f.text_area :route, class: 'input' %>
-        </div>
-
-        <label for="yamalog_pic" class="label">写真</label>
-        <div class="control fileupload">
-          <%= f.file_field :yamalog_pic, class: 'inputfile inputfile-6' %>
-          <%= f.label :yamalog_pic do %>
-            <span></span>
-            <strong>ファイルを選択</strong>
-          <% end %>
-        </div>
-
-        <label for="gpslog" class="label">GPSログ</label>
-        <div class="control fieupload">
-          <%= f.file_field :gpslog, class: 'inputfile inputfile-6' %>
-          <%= f.label :gpslog do %>
-            <span></span>
-            <strong>ファイルを選択</strong>
-          <% end %>
-        </div>
-
-        <div class="control">
-          <%= f.button "投稿", class: 'button is-primary is-outlined' %>
-        </div>
-      <% end %>
-
+<div class="row">
+  <div class="col s12">
+    <div class="section">
+      <h2>やまログを作成</h2>
+      <p>登った山の情報を登録して、みんなに共有しよう。</p>
     </div>
   </div>
 </div>
 
-<%= javascript_include_tag 'main' %>
+<div class="row">
+  <%= form_for @yamalog, html: {:class => "col s12 m8 offset-m2", multipart: true, wrapper: :horizontal_form} do |f| %>
+
+    <div class="row">
+      <div class="col s12">
+        <%= f.label :yama_date, '登山日時'%>
+        <%= f.date_field :yama_date, class: 'datepicker' %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12">
+        <%= f.label :yama_name, '山名' %>
+        <%= f.text_field :yama_name, class: 'validate' %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12">
+        <%= f.label :weather, '天気' %>
+        <%= f.text_field :weather, class: 'validate' %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12">
+        <%= f.label :member, 'メンバー' %>
+        <%= f.text_field :member, class: 'validate' %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12">
+        <%= f.label :route, 'ルート' %>
+        <%= f.text_area :route, class: 'materialize-textarea' %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12">
+        <%= f.label :yamalog_pic1, '写真' %>
+        <div class="file-field input-field">
+          <div class="btn">
+            <span>File</span>
+            <input type="file">
+          </div>
+          <div class="file-path-wrapper">
+            <%= f.text_field :yamalog_pic1, class: 'file-path validate' %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12">
+        <%= f.label :gpslog, 'GPSログ'%>
+        <div class="file-field input-field">
+          <div class="btn">
+            <span>File</span>
+            <input type="file">
+          </div>
+          <div class="file-path-wrapper">
+            <%= f.text_field :gpslog, class: 'file-path validate' %>
+          </div>
+          <span>gpx, kmlのみ</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12">
+        <%= f.button '投稿', class: 'btn waves-effect waves-light green' %>
+      </div>
+    </div>
+  <% end %>
+
+  </div>
+</div>

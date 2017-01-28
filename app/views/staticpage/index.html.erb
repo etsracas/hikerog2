@@ -1,46 +1,42 @@
 <div class="hikerog-top">
 
   <header>
-    <div class="uk-container uk-container-center">
+    <div class="container">
       <h1>hikerog</h1>
     </div>
   </header>
 
   <section class="contents-top">
-    <div class="uk-container uk-container-center">
+    <div class="container">
 
-      <div class="uk-grid">
+      <div class="row">
 
-        <div class="uk-width-small-4-6">
+        <div class="col s12 m8">
           <div class="catch-copy">
             <h2 class="catch-copy_title">hikerogは、hikerのlogを共有できる<br />山行記録サービスです。</h2>
             <p>登った山を記録に残そう。まずは<%= link_to '登録', new_user_registration_path %>から。</p>
           </div>
         </div>
 
-        <div class="uk-width-small-2-6">
-          <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { :class => "uk-form home-login" }) do |f| %>
-            <fieldset>
-              <div class="uk-form-row">
-                <%= f.email_field :email, placeholder: 'メールアドレス', class: 'uk-width-1-1', autofocus: true %>
+        <div class="col s12 m4">
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <%= f.email_field :email, placeholder: 'メールアドレス', class: 'validate', autofocus: true %>
+            <%= f.password_field :password, placeholder: 'パスワード',  class: 'validate', autocomplete: "off" %>
+            <div class="row">
+              <div class="col s6">
+                <%= f.button "ログイン", class: 'waves-effect waves-light btn btn-width' %>
               </div>
-              <div class="uk-form-row">
-                <%= f.password_field :password, placeholder: 'パスワード',  class: 'uk-width-1-1', autocomplete: "off" %>
+              <div class="col s6">
+                <%= link_to '新規登録', new_user_registration_path, class: 'aves-effect waves-light light-blue btn btn-width' %>
               </div>
-              <div class="uk-form-row">
-                <%= f.button "ログイン", class: 'uk-button uk-button-success uk-width-1-1' %>
-              </div>
-            </fieldset>
+            </div>
           <% end %>
-          <div class="home-signin">
-            <%= link_to '新規登録', new_user_registration_path, class: 'uk-button uk-button-primary' %>
-          </div>
         </div>
 
       </div>
 
-      <div class="uk-grid">
-        <div class="uk-width-1-1">
+      <div class="row">
+        <div class="col s12">
           <div class="hikerog-search">
             <h2>はいくログを検索</h2>
             <p>山名、地域、メンバーなど様々な項目で検索が可能です。</p>
@@ -48,23 +44,19 @@
         </div>
       </div>
 
-      <div class="uk-grid">
-        <div class="uk-width-1-1">
-          <%= form_tag yamalogs_path, :class => "uk-form", :method => 'get' do %>
-            <div class="uk-grid">
-              <div class="uk-width-4-6">
-                <div class="uk-form-row">
-                  <%= text_field_tag :search, params[:search], class: 'uk-width-1-1', placeholder: '山名' %>
-                </div>
-              </div>
-              <div class="uk-width-2-6">
-                <div class="uk-form-row">
-                  <%= button_tag "検索", :yama_name => nil, class: 'uk-button uk-button-success uk-width-1-1' %>
-                </div>
-              </div>
+      <div class="row">
+        <%= form_tag yamalogs_path, :method => 'get', html: {:class => "col s12 center-align"} do %>
+          <div class="row">
+            <div class="col s12 m7 offset-m1">
+              <%= text_field_tag :search, params[:search], placeholder: 'やまログを検索' %>
             </div>
-          <% end %>
-        </div>
+            <div class="col s12 m3">
+              <%= button_tag :yama_name => nil, class: 'btn waves-effect waves-light' do %>
+                <i class="material-icons left">search</i>検索する
+              <% end %>
+            </div>
+          </div>
+        <% end %>
       </div>
 
 
@@ -73,23 +65,51 @@
 
 </div>
 
-<section class="section section-inverse yamalog">
-  <div class="uk-container uk-container-center">
-    <div class="uk-grid">
-      <div class="uk-width-1-1 subtitle">
-        <h2>投稿されたはいくログ</h2>
+<section class="section section-default explain">
+  <div class="container">
+    <h3 class="center-align">登山者のための共有サービス</h2>
+    <div class="row">
+      <div class="col s4">
+        <div class="center promo">
+          <i class="material-icons">today</i>
+          <p class="promo-caption">登山の思い出を記録</p>
+        </div>
+      </div>
+      <div class="col s4">
+        <div class="center promo">
+          <i class="material-icons">my_location</i>
+          <p class="promo-caption">GPSログの表示</p>
+        </div>
+      </div>
+      <div class="col s4">
+        <div class="center promo">
+          <i class="material-icons">question_answer</i>
+          <p class="promo-caption">登山情報を共有</p>
+        </div>
       </div>
     </div>
-    <div class="uk-grid">
+  </div>
+</section>
+
+<section class="section section-inverse yamalog">
+  <div class="container">
+    <h3 class="center-align">投稿されたはいくログ</h3>
+    <div class="row">
       <% @yamalogs.each do |yamalog| %>
-          <div class="uk-width-medium-1-2 uk-width-large-1-3 top-hikerog">
-            <div class="uk-panel uk-panel-box uk-panel-box-secondary">
-                <%= link_to(yamalog) do %>
-                  <h3 class="uk-panel-title"><%= yamalog.yama_name %></h3>
-                <% end %>
+        <div class="col s4 top-hikerog">
+          <div class="card">
+            <div class="card-image">
+            </div>
+            <div class="card-content">
+              <%= link_to(yamalog) do %>
+                <span class="card-title"><%= yamalog.yama_name %></span>
+              <% end %>
+              <p>
                 <%= yamalog.yama_date %>
+              </p>
             </div>
           </div>
+        </div>
       <% end %>
     </div>
   </div>

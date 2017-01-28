@@ -1,14 +1,28 @@
-<div class="container hikerog">
+<% provide :title, "やまログを探す" %>
 
-  <h1>みんなのヤマログ一覧</h1>
-  <p>みんなのヤマログを確認しよう。</p>
+<div class="row">
+  <div class="col s12">
+    <div class="section">
+      <h2>みんなのヤマログ一覧</h2>
+      <p>みんなのヤマログを確認しよう。</p>
+    </div>
+  </div>
+</div>
 
-  <%= form_tag yamalogs_path, :method => 'get' do %> <%#　projects_pathはモデル名で読みかえること %>
-      <p>
-        <%= text_field_tag :search, params[:search] %>
-        <%= submit_tag "検索する", :yama_name => nil %>
-      </p>
+<div class="row">
+  <%= form_tag yamalogs_path, :method => 'get', html: {:class => "col s12 center-align"} do %>
+    <div class="row">
+      <div class="col s12 m7 offset-m1">
+        <%= text_field_tag :search, params[:search], placeholder: 'やまログを検索' %>
+      </div>
+      <div class="col s12 m3">
+        <%= button_tag :yama_name => nil, class: 'btn waves-effect waves-light' do %>
+          <i class="material-icons left">search</i>検索する
+        <% end %>
+      </div>
+    </div>
   <% end %>
+</div>
 
   <div class="list-group">
     <% @yamalogs.each do |yamalog| %>
@@ -22,5 +36,3 @@
         </div>
     <% end %>
   </div>
-
-</div>
