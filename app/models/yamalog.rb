@@ -9,7 +9,8 @@ class Yamalog < ActiveRecord::Base
 
   belongs_to :user
 
-  #mount_uploader :yamalog_pic, YamalogPicUploader
+  mount_uploader :yamalog_pic1, YamalogPicUploader
+  mount_uploader :gpslog, GpslogUploader
 
   def created_by?(user)
     return false unless user

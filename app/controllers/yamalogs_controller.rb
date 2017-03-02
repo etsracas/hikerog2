@@ -48,7 +48,7 @@ class YamalogsController < ApplicationController
 
   def yamalog_params
     params.require(:yamalog).permit(
-      :yama_date, :yama_name, :weather, :member, :route, :gpslog, :yamalog_pic
+      :yama_date, :yama_name, :weather, :member, :route, :gpslog, :yamalog_pic1
     )
   end
 end

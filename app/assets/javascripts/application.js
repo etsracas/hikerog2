@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require materialize
+//= require openlayers/dist/ol
+//= require cmap
 
 $( document ).ready(function(){
   $('.datepicker').pickadate({

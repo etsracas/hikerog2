@@ -1,15 +1,12 @@
-class YamalogPicUploader < CarrierWave::Uploader::Base
+class GpslogUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
-  include CarrierWave::RMagick
+  # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
   storage :file
   # storage :fog
-
-  #アプロードする際にjpg形式に変換する
-  process convert: 'jpg'
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -32,29 +29,21 @@ class YamalogPicUploader < CarrierWave::Uploader::Base
   #   # do something
   # end
 
-  # サムネイルを同時に生成する。(width 400px * height 200px)
   # Create different versions of your uploaded files:
-  version :thumb do
-    process resize_to_fit: [400, 200]
-  end
+  # version :thumb do
+  #   process resize_to_fit: [50, 50]
+  # end
 
-  # アップロードを許可するファイル形式
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
-  def extension_whitelist
-    %w(jpg jpeg gif png)
-  end
+  # def extension_whitelist
+  #   %w(jpg jpeg gif png)
+  # end
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
-  def filename
-    "#{secure_token}.#{file.extension}" if original_filename.present?
-  end
-
-  protected
-  def secure_token
-    var = :"@#{mounted_as}_secure_token"
-    model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.uuid)
-  end
+  # def filename
+  #   "something.jpg" if original_filename
+  # end
 
 end

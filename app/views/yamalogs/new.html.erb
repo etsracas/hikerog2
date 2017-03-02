@@ -53,10 +53,10 @@
         <div class="file-field input-field">
           <div class="btn">
             <span>File</span>
-            <input type="file">
+            <%= f.file_field :yamalog_pic1 %>
           </div>
           <div class="file-path-wrapper">
-            <%= f.text_field :yamalog_pic1, class: 'file-path validate' %>
+            <input class="file-path validate" type="text" />
           </div>
         </div>
       </div>
@@ -68,10 +68,10 @@
         <div class="file-field input-field">
           <div class="btn">
             <span>File</span>
-            <input type="file">
+            <%= f.file_field :gpslog %>
           </div>
           <div class="file-path-wrapper">
-            <%= f.text_field :gpslog, class: 'file-path validate' %>
+            <input class="file-path validate" type="text" />
           </div>
           <span>gpx, kmlのみ</span>
         </div>
